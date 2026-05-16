@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.MukundaKatta/bytes",
+  "description": "MCP server: parse and format byte sizes \u2014 1024 \u2194 '1 KB', '1.5 MB' \u2194 1572864.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/MukundaKatta/bytes-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://github.com/MukundaKatta/bytes-mcp",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@mukundakatta/bytes-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

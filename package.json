@@ -1,0 +1,60 @@
+{
+  "name": "@mukundakatta/bytes-mcp",
+  "version": "0.1.0",
+  "mcpName": "io.github.MukundaKatta/bytes",
+  "description": "MCP server: parse and format byte sizes \u2014 1024 \u2194 '1 KB', '1.5 MB' \u2194 1572864.",
+  "type": "module",
+  "bin": {
+    "mcp-bytes": "dist/server.js"
+  },
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "test": "node --test --import tsx test/*.test.ts",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "cursor",
+    "cline",
+    "windsurf",
+    "zed",
+    "bytes",
+    "size",
+    "format",
+    "parse",
+    "kb",
+    "mb"
+  ],
+  "author": "Mukunda Katta <mukunda.vjcs6@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/MukundaKatta/bytes-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/MukundaKatta/bytes-mcp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MukundaKatta/bytes-mcp.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ]
+}
