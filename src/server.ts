@@ -28,8 +28,15 @@ export function format(bytes: number, system: System = 'binary', precision: numb
   const base = system === 'si' ? 1000 : 1024;
   const units = system === 'si' ? SI_UNITS : BIN_UNITS;
   if (abs < base) return `${neg ? '-' : ''}${abs} ${units[0]}`;
-  const exp = Math.min(units.length - 1, Math.floor(Math.log(abs) / Math.log(base)));
-  const value = abs / Math.pow(base, exp);
+  let exp = Math.min(units.length - 1, Math.floor(Math.log(abs) / Math.log(base)));
+  let value = abs / Math.pow(base, exp);
+  // Rounding to `precision` can push the value up to `base` (e.g. 1023.9995 ->
+  // "1024.00"); promote to the next unit so we render "1.00 MiB", not
+  // "1024.00 KiB". Skip if we're already at the largest unit.
+  if (Number(value.toFixed(precision)) >= base && exp < units.length - 1) {
+    exp += 1;
+    value = abs / Math.pow(base, exp);
+  }
   return `${neg ? '-' : ''}${value.toFixed(precision)} ${units[exp]}`;
 }
 

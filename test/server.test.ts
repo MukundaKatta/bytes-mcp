@@ -26,6 +26,19 @@ test('precision', () => {
   assert.equal(format(1500, 'si', 1), '1.5 kB');
 });
 
+test('format promotes unit when rounding reaches the base', () => {
+  // 1048575 / 1024 = 1023.999... which rounds to 1024.00; should read as MiB.
+  assert.equal(format(1048575, 'binary'), '1.00 MiB');
+  assert.equal(format(1024 * 1024 - 1, 'binary'), '1.00 MiB');
+  // SI: 999999 / 1000 = 999.999 -> rounds to 1000.00; should read as MB.
+  assert.equal(format(999999, 'si'), '1.00 MB');
+});
+
+test('format does not over-promote when rounding stays below the base', () => {
+  assert.equal(format(1536, 'binary'), '1.50 KiB');
+  assert.equal(format(1_500_000, 'si'), '1.50 MB');
+});
+
 test('parse binary units', () => {
   assert.equal(parse('1 KiB'), 1024);
   assert.equal(parse('2 MiB'), 2 * 1024 * 1024);
